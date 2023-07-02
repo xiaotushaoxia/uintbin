@@ -57,16 +57,30 @@ func toInt(u any) any {
 }
 
 func toBinaryString(v uint64, n int) string {
-	var result = make([]byte, n)
-	for i := 0; i < n; i++ {
-		if v&1 == 1 {
-			result[n-i-1] = '1'
-		} else {
-			result[n-i-1] = '0'
-		}
-		v >>= 1
+	vv := fmt.Sprintf("%b", v)
+	l := len(vv)
+	if l == n {
+		return vv
 	}
-	return string(result)
+	if l > n {
+		return vv[l-n:]
+	}
+	var result = make([]byte, n-l)
+	for i := 0; i < n-l; i++ {
+		result[i] = '0'
+	}
+	return string(result) + vv
+	// 换了一下可以直接用%b
+	//var result = make([]byte, n)
+	//for i := 0; i < n; i++ {
+	//	if v&1 == 1 {
+	//		result[n-i-1] = '1'
+	//	} else {
+	//		result[n-i-1] = '0'
+	//	}
+	//	v >>= 1
+	//}
+	//return string(result)
 }
 
 func sting2uint64(s string) uint64 {

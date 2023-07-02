@@ -1,10 +1,14 @@
-# 用于无符号整数和二进制之间的转换 
+# 用于无符号整数和二进制之间的转换
+
 如255转换成11111111  (uint8转二进制字符串)
 
 65535转换成bytes[255 255]  uint16转字节数组
 
 ReadBit(255,1) -> true
 
+都用了大端。感觉如果把大小端当参数传进去就让接口不够简洁。
+
+如果要区分大小端，感觉标准库的就差不多了，我封装出来就是因为标准库要制定大小端有点麻烦。
 ```go
 package uintbin
 
@@ -65,7 +69,7 @@ func TestReadBit(t *testing.T) {
     //0000000000000000000000000000000000000000000000000000000010111111
 }
 
-func TestPutUint(t *testing.T) {
+func TestUint2BinaryString(t *testing.T) {
 	binaryString := Uint2BinaryString(uint32(65525))
 	fmt.Println(binaryString)
 	//  00000000000000001111111111110101

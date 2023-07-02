@@ -31,7 +31,7 @@ func TestReadBit(t *testing.T) {
 	fmt.Println(Uint2BinaryString(c))
 }
 
-func TestPutUint(t *testing.T) {
+func TestUint2BinaryString(t *testing.T) {
 	binaryString := Uint2BinaryString(uint32(65525))
 	fmt.Println(binaryString)
 	type kk uint64
